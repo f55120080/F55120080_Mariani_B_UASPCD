@@ -1,0 +1,14 @@
+A = imread('eight.tif');
+A = imnoise(A,'salt & pepper',0.01);
+k = ones(3) / 9;
+[r, c] = size(A);
+[m, n] = size(k);
+h = rot90(k, 2);
+center = floor((size(h)+1)/2);
+left = center(2) - 1;
+right = n - center(2);
+top = center(1) - 1;
+buttom = m - center(1);
+Rep = zeros(r + top + buttom, c + left + right);
+for x = 1 + top : r + top
+    for y = 1 + left : c + left
